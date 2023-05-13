@@ -1,11 +1,3 @@
----
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
----
 
 <!-- 이슈이름은 '[컨벤션] 기능이름' 으로 통일해주세요.  -->
 
