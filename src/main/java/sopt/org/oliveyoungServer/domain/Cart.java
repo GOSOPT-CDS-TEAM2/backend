@@ -15,10 +15,10 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
-    private long cartId;
+    private Long cartId;
 
     // User를 참조하는 외래키 역할
-    private long userId;
+    private Long userId;
 
     @ElementCollection
     @CollectionTable(
@@ -31,26 +31,46 @@ public class Cart {
         this.userId = userId;
     }
 
-    public void addItemToCart(CartLine cartLine) {
-        long mapKey = cartLine.getItemId();
+    public void addProductToCart(CartLine cartLine) {
+        long mapKey = cartLine.getProductId();
 
         // 기존 아이템이 존재한다면 수량을 더함
         if(cart.containsKey(mapKey)){
-            CartLine existCartLine = cart.get(cartLine.getItemId());
+            CartLine existCartLine = cart.get(cartLine.getProductId());
             int newOrderCount = existCartLine.getOrderCount() + cartLine.getOrderCount();
             cart.replace(mapKey, CartLine.builder().
                     cartId(cartLine.getCartId()).
-                    itemId(cartLine.getItemId()).
+                    productId(cartLine.getProductId()).
                     orderCount(newOrderCount).
                     build());
         }
     }
 
-    public void modifyOrderCount(CartLine newCartLine) {
-        this.cart.replace(newCartLine.getOrderItemId(), newCartLine);
+    public void subtractProductToCart(CartLine cartLine){
+        long mapKey = cartLine.getProductId();
+
+        // 기존 아이템이 존재한다면 수량을 뺀다
+        if(cart.containsKey(mapKey)){
+            CartLine existCartLine = cart.get(cartLine.getProductId());
+            int newOrderCount = existCartLine.getOrderCount() - cartLine.getOrderCount();
+            if(newOrderCount>0) {
+                cart.replace(mapKey, CartLine.builder().
+                        cartId(cartLine.getCartId()).
+                        productId(cartLine.getProductId()).
+                        orderCount(newOrderCount).
+                        build());
+            }
+            else{
+                // 예외처리 필요
+            }
+        }
     }
 
-    public void removeCartLine(Long cartItemId) {
-        this.cart.remove(cartItemId);
+    public void modifyOrderCount(CartLine newCartLine) {
+        this.cart.replace(newCartLine.getProductId(), newCartLine);
+    }
+
+    public void removeCartLine(Long productId) {
+        this.cart.remove(productId);
     }
 }
