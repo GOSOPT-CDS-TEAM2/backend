@@ -1,22 +1,25 @@
 package sopt.org.oliveyoungServer.controller.dto.response;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import sopt.org.oliveyoungServer.domain.CartLine;
+import sopt.org.oliveyoungServer.controller.dto.ProductDto;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Getter
 @NoArgsConstructor
 public class CartResponse {
 
-    private Long cartId;
+    private int deliveryFee;
 
-    // User를 참조하는 외래키 역할
-    private Long userId;
+    private List<ProductDto> cartProducts = new ArrayList<>();
 
-    private Map<Long, CartLine> cart = new HashMap<>();
-
-
+    @Builder
+    public CartResponse(int deliveryFee, List<ProductDto> cartProducts) {
+        this.deliveryFee = deliveryFee;
+        this.cartProducts = cartProducts;
+    }
 }

@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="cart_product")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CartProduct {
@@ -24,7 +23,6 @@ public class CartProduct {
     @ManyToOne(fetch=FetchType.LAZY)
     private Cart cart;
 
-    private int OrderPrice; // 주문 가격
     private int count; // 주문 수량
 
     public void setCart(Cart cart) {
