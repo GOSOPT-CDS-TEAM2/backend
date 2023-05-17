@@ -24,6 +24,7 @@ public class Cart {
     @CollectionTable(
             name = "cart_line"
     )
+    @MapKeyColumn(name = "map_key")
     private Map<Long, CartLine> cart = new HashMap<>();
 
     public Cart(long userId){
@@ -31,15 +32,17 @@ public class Cart {
     }
 
     public void addItemToCart(CartLine cartLine) {
-        long itemId = cartLine.getOrderItemId();
+        long mapKey = cartLine.getItemId();
 
-        if (cart.containsKey(itemId)) {
-            int existCartItemOrderCount = cart.get(itemId).getOrderCount();
-            int newOrderCount = existCartItemOrderCount + cartLine.getOrderCount();
-            cart.replace(itemId, new CartLine(itemId, newOrderCount));
-        }
-        else {
-            cart.put(itemId, cartLine);
+        // 기존 아이템이 존재한다면 수량을 더함
+        if(cart.containsKey(mapKey)){
+            CartLine existCartLine = cart.get(cartLine.getItemId());
+            int newOrderCount = existCartLine.getOrderCount() + cartLine.getOrderCount();
+            cart.replace(mapKey, CartLine.builder().
+                    cartId(cartLine.getCartId()).
+                    itemId(cartLine.getItemId()).
+                    orderCount(newOrderCount).
+                    build());
         }
     }
 
