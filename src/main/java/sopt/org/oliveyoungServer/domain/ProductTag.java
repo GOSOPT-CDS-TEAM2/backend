@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class ProductTag {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_tag_id")
-    private long id;
+    private Long id;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)

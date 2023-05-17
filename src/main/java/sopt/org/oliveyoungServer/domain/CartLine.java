@@ -11,12 +11,14 @@ import javax.persistence.Embeddable;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CartLine {
-    private long orderItemId;
+    private Long cartId;
+    private Long productId;
     private int orderCount;
 
     @Builder
-    public CartLine(long orderItemId, int orderCount) {
-        this.orderItemId = orderItemId;
+    public CartLine(long cartId, long productId, int orderCount) {
+        this.cartId = cartId;
+        this.productId = productId;
         this.orderCount = orderCount;
     }
 }
