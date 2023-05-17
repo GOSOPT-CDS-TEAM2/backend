@@ -13,7 +13,7 @@ GOSOPT 합동세미나 웹 2조 서버
 `feat branch`: 각자 개발 branch
 
 - 할 일 issue 등록 후 issue 번호와 isuue 이름으로 branch 생성 후 작업
-  - ex) [FEAT]#`issue num`-`isuue name`
+  - ex) FEAT/#`issue num`-`isuue name`
 - 해당 branch 작업 완료 후 PR 보내기
   - 항상 local에서 충돌 해결 후 → remote에 올리기
   - reviewer에 서로 tag후 code-review
