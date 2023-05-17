@@ -9,7 +9,6 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Builder
 public class CartLineDto {
     private String name;
     private int originalPrice;
@@ -20,6 +19,7 @@ public class CartLineDto {
     private String image;
     private List<Tag> tags;
 
+    @Builder
     public CartLineDto(String name, int originalPrice, int discountRate, int discountAmount, String image, List<Tag> tags) {
         this.name = name;
         this.originalPrice = originalPrice;

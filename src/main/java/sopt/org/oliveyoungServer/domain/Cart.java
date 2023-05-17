@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -15,62 +17,24 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
-    private Long cartId;
+    private Long id;
 
-    // User를 참조하는 외래키 역할
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "cart_line"
-    )
-    @MapKeyColumn(name = "map_key")
-    private Map<Long, CartLine> cart = new HashMap<>();
+    @OneToMany(mappedBy="cart", cascade=CascadeType.ALL)
+    private List<CartProduct> cartProducts = new ArrayList<>();
 
-    public Cart(long userId){
-        this.userId = userId;
+    // 연관관계 메서드
+    public void setUser(User user){
+        this.user = user;
+        user.getCarts().add(this);
     }
 
-    public void addProductToCart(CartLine cartLine) {
-        long mapKey = cartLine.getProductId();
-
-        // 기존 아이템이 존재한다면 수량을 더함
-        if(cart.containsKey(mapKey)){
-            CartLine existCartLine = cart.get(cartLine.getProductId());
-            int newOrderCount = existCartLine.getOrderCount() + cartLine.getOrderCount();
-            cart.replace(mapKey, CartLine.builder().
-                    cartId(cartLine.getCartId()).
-                    productId(cartLine.getProductId()).
-                    orderCount(newOrderCount).
-                    build());
-        }
+    public void addCartProduct(CartProduct cartProduct){
+        cartProducts.add(cartProduct);
+        cartProduct.setCart(this);
     }
 
-    public void subtractProductToCart(CartLine cartLine){
-        long mapKey = cartLine.getProductId();
-
-        // 기존 아이템이 존재한다면 수량을 뺀다
-        if(cart.containsKey(mapKey)){
-            CartLine existCartLine = cart.get(cartLine.getProductId());
-            int newOrderCount = existCartLine.getOrderCount() - cartLine.getOrderCount();
-            if(newOrderCount>0) {
-                cart.replace(mapKey, CartLine.builder().
-                        cartId(cartLine.getCartId()).
-                        productId(cartLine.getProductId()).
-                        orderCount(newOrderCount).
-                        build());
-            }
-            else{
-                // 예외처리 필요
-            }
-        }
-    }
-
-    public void modifyOrderCount(CartLine newCartLine) {
-        this.cart.replace(newCartLine.getProductId(), newCartLine);
-    }
-
-    public void removeCartLine(Long productId) {
-        this.cart.remove(productId);
-    }
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name="products")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product {
@@ -30,7 +31,7 @@ public class Product {
 
     private String productImgSrc;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "products")
     private List<ProductTag> productTags = new ArrayList<ProductTag>();
     @Builder
     public Product(String name, ProductCategory productCategory, int originalPrice, int discountRate, String productImgSrc, List<ProductTag> productTags) {
