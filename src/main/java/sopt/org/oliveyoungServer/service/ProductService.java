@@ -12,6 +12,8 @@ import sopt.org.oliveyoungServer.infrastructure.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import static sopt.org.oliveyoungServer.domain.ProductCategory.*;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
