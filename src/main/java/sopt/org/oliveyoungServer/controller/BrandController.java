@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import sopt.org.oliveyoungServer.common.dto.ApiResponse;
 import sopt.org.oliveyoungServer.controller.dto.response.BrandResponseDto;
 import sopt.org.oliveyoungServer.domain.Brand;
+import sopt.org.oliveyoungServer.domain.BrandLike;
 import sopt.org.oliveyoungServer.service.BrandService;
 import sopt.org.oliveyoungServer.exception.Success;
 
@@ -22,7 +23,7 @@ public class BrandController {
 
     @GetMapping("/brand")
     @ResponseStatus(HttpStatus.OK)
-    public ApiResponse<List<Brand>> getBrands(@RequestHeader Long userId) {
-        return ApiResponse.success(Success.GETBRAND_SUCCESS, brandService.getBrand());
+    public ApiResponse<List<BrandResponseDto>> getBrands(@RequestHeader Long userId) {
+        return ApiResponse.success(Success.GETBRAND_SUCCESS, brandService.getBrands(userId));
     }
 }

@@ -1,5 +1,8 @@
 package sopt.org.oliveyoungServer.controller.dto.response;
 
+import lombok.Getter;
+import sopt.org.oliveyoungServer.domain.BrandLike;
+@Getter
 public class BrandResponseDto {
     private Long id;
     private String name;
