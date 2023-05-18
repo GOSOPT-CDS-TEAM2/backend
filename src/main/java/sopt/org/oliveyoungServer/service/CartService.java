@@ -1,31 +1,36 @@
 package sopt.org.oliveyoungServer.service;
-
+import java.util.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import sopt.org.oliveyoungServer.controller.dto.CartLineDto;
-import sopt.org.oliveyoungServer.controller.dto.response.CartProductResponse;
+import sopt.org.oliveyoungServer.controller.dto.CartDto;
+import sopt.org.oliveyoungServer.controller.dto.CartProductDto;
 import sopt.org.oliveyoungServer.domain.Cart;
-import sopt.org.oliveyoungServer.domain.CartLine;
-import sopt.org.oliveyoungServer.infrastructure.CartLineRepository;
+import sopt.org.oliveyoungServer.domain.CartProduct;
+import sopt.org.oliveyoungServer.domain.Product;
+import sopt.org.oliveyoungServer.infrastructure.CartProductRepository;
 import sopt.org.oliveyoungServer.infrastructure.CartRepository;
 
-import java.util.List;
+
+
+
 
 @Service
 @RequiredArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
-    private final CartLineRepository cartLineRepository;
+    private final CartProductRepository cartProductRepository;
 
-    void addProduct(Long userId, Long productId){
-        Cart cart = cartRepository.findByUserId(userId);
-        CartLine cartLine = cartLineRepository.findByProductId(productId);
-        cart.addProductToCart(cartLine);
-    }
-    void subtractProduct(Long userId, Long productId){
-        Cart cart = cartRepository.findByUserId(userId);
-        CartLine cartLine = cartLineRepository.findByProductId(productId);
-        cart.subtractProductToCart(cartLine);
+    public CartDto getCart(Long userId){
+        Cart cart = cartRepository.findByUserId(userId).orElseThrow();
+        System.out.println(cart.getId());
+        List<CartProductDto> cartProducts = cartProductRepository.findCartProductDtos(cart.getId());
+        CartDto cartDto = CartDto.builder()
+                .cartId(cart.getId())
+                .userId(userId)
+                .cartProductDtoList(cartProducts)
+                .build();
+        System.out.println(cartDto.getCartId());
+
+        return cartDto;
     }
 }
