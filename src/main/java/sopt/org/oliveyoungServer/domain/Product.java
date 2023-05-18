@@ -30,7 +30,7 @@ public class Product {
 
     private String productImgSrc;
 
-    @OneToMany(mappedBy = "tag", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade=CascadeType.ALL)
     private List<ProductTag> productTags = new ArrayList<>();
     @Builder
     public Product(String name, ProductCategory productCategory, int originalPrice, int discountRate, String productImgSrc, List<ProductTag> productTags) {

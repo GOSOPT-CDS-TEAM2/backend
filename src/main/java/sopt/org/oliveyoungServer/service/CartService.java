@@ -8,6 +8,7 @@ import sopt.org.oliveyoungServer.controller.dto.TagDto;
 import sopt.org.oliveyoungServer.domain.*;
 import sopt.org.oliveyoungServer.infrastructure.CartRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,36 +18,51 @@ import java.util.Optional;
 public class CartService {
     private final CartRepository cartRepository;
 
-    public Optional<CartDto> getCartProduct(Long userId){
-        Cart cart = cartRepository.findByUserId(userId);
-        List<TagDto> tags = new ArrayList<>();
-        List<ProductDto> productDtos = new ArrayList<>();
+    public CartDto getCart(Long userId) {
+        Cart cart = cartRepository.findByUserId(userId).orElseThrow();
 
-        for(CartProduct cartProduct : cart.getCartProducts()){
-            Product product = cartProduct.getProduct();
-
-            for(ProductTag productTag : product.getProductTags()){
-                tags.add(TagDto.builder().name(productTag.getTag().getName()).build());
-            }
-
-            ProductDto productDto = ProductDto.builder().
-                    name(product.getName()).
-                    originalPrice(product.getOriginalPrice()).
-                    discountRate(product.getDiscountRate()).
-                    productCategory(product.getProductCategory()).
-                    productImgSrc(product.getProductImgSrc()).
-                    productTags(tags)
-                    .build();
-
-            productDtos.add(productDto);
+        if (cart == null) {
+            System.out.println("cart null");
         }
 
-        CartDto cartDto = CartDto.builder().
-                        userId(userId).
-                        cartId(cart.getId()).
-                        cartProductDtoList(productDtos).
-                        build();
+        List<ProductDto> productDtos = new ArrayList<>();
 
-        return Optional.of(cartDto);
+        for (CartProduct cartProduct : cart.getCartProducts()) {
+            Product product = cartProduct.getProduct();
+
+            if (product != null) {
+                List<TagDto> tags = new ArrayList<>();
+
+                for (ProductTag productTag : product.getProductTags()) {
+                    tags.add(TagDto.builder()
+                            .name(productTag.getTag().getName())
+                            .build());
+                    System.out.println("============="+tags.get(1));
+                }
+
+                productDtos.add(ProductDto.builder()
+                        .name(product.getName())
+                        .productCategory(product.getProductCategory())
+                        .originalPrice(product.getOriginalPrice())
+                        .discountRate(product.getDiscountRate())
+                        .productImgSrc(product.getProductImgSrc())
+                        .productTags(tags)
+                        .build());
+
+
+            } else {
+                System.out.println("product null");
+            }
+        }
+
+        CartDto cartDto = CartDto.builder()
+                .userId(userId)
+                .cartId(cart.getId())
+                .cartProductDtoList(productDtos)
+                .build();
+
+        System.out.println(cartDto.getCartId());
+
+        return cartDto;
     }
 }

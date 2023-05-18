@@ -21,6 +21,7 @@ public class CartProduct {
     private Product product; // 주문 상품
 
     @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cart_id")
     private Cart cart;
 
     private int count; // 주문 수량

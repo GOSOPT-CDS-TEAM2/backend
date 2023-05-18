@@ -20,13 +20,16 @@ import java.util.Optional;
 public class CartController {
     private final CartService cartService;
 
-    @GetMapping()
-    @ResponseStatus(HttpStatus.OK)
-    public ApiResponse<CartResponse> getCart(@RequestParam @Valid Long userId){
-        Optional<CartDto> cart = cartService.getCartProduct(userId);
+    @GetMapping("/{userId}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public ApiResponse<CartResponse> getCart(@PathVariable @Valid Long userId){
+        CartDto cart = cartService.getCart(userId);
+        System.out.println("===========");
+        System.out.println(cart.getCartId());
+        System.out.println("===========");
         CartResponse cartResponse = CartResponse.builder().
                 deliveryFee(0).
-                cartProducts(cart.get().getProductDtoList()).
+                cartProducts(cart.getProductDtoList()).
                 build();
         return ApiResponse.success(Success.GETUSERCART_SUCCESS, cartResponse);
     }

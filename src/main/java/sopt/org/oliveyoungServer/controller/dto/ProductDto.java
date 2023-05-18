@@ -27,7 +27,7 @@ public class ProductDto {
         this.name = name;
         this.productCategory = productCategory;
         this.originalPrice = originalPrice;
-        this.discountPrice = originalPrice*(discountRate/100);
+        this.discountPrice = originalPrice*(1-discountRate/100);
         this.discountRate = discountRate;
         this.productImgSrc = productImgSrc;
         this.productTags = productTags;

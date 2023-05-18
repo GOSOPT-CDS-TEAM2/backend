@@ -22,6 +22,7 @@ public class ProductTag {
     @ManyToOne(fetch = FetchType.LAZY)
     private Tag tag;
 
+
     public void setProduct(Product product) {
         this.product = product;
     }
