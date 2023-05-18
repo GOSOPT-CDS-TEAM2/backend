@@ -29,4 +29,8 @@ public class BrandLike {
         this.user = user;
         this.brand = brand;
     }
+
+    public static BrandLike newInstance(User user, Brand brand) {
+        return new BrandLike(user, brand);
+    }
 }
