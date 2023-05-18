@@ -12,13 +12,12 @@ public class CartDto {
     private Long cartId;
     private Long userId;
 
-    private List<ProductDto> productDtoList;
+    private List<CartProductDto> cartProductDtos;
 
     @Builder
-
-    public CartDto(Long cartId, Long userId, List<ProductDto> cartProductDtoList) {
+    public CartDto(Long cartId, Long userId, List<CartProductDto> cartProductDtoList) {
         this.cartId = cartId;
         this.userId = userId;
-        this.productDtoList = cartProductDtoList;
+        this.cartProductDtos = cartProductDtoList;
     }
 }

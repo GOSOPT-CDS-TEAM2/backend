@@ -19,8 +19,6 @@ public class User {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy="user")
-    private List<Cart> carts = new ArrayList<>();
 
 
     @Builder

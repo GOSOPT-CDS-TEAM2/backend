@@ -1,8 +1,7 @@
 package sopt.org.oliveyoungServer.controller.dto.response;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import sopt.org.oliveyoungServer.controller.dto.CartProductDto;
 import sopt.org.oliveyoungServer.controller.dto.ProductDto;
 
 import java.util.ArrayList;
@@ -10,16 +9,15 @@ import java.util.List;
 
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CartResponse {
 
     private int deliveryFee;
 
-    private List<ProductDto> cartProducts = new ArrayList<>();
+    private List<CartProductDto> cartProducts = new ArrayList<>();
 
-    @Builder
-    public CartResponse(int deliveryFee, List<ProductDto> cartProducts) {
-        this.deliveryFee = deliveryFee;
-        this.cartProducts = cartProducts;
+    public static CartResponse of(int deliveryFee, List<CartProductDto> cartProductDtos){
+        return new CartResponse(deliveryFee, cartProductDtos);
     }
 }

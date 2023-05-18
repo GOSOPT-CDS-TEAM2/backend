@@ -1,16 +1,13 @@
 package sopt.org.oliveyoungServer.controller.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import sopt.org.oliveyoungServer.domain.Product;
+import lombok.*;
 import sopt.org.oliveyoungServer.domain.ProductCategory;
-import sopt.org.oliveyoungServer.domain.Tag;
 
 import java.util.List;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductDto {
     private String name;
 
@@ -20,16 +17,10 @@ public class ProductDto {
     private int discountPrice;
     private int discountRate;
     private String productImgSrc;
-    private List<TagDto> productTags;
 
-    @Builder
-    public ProductDto(String name, ProductCategory productCategory, int originalPrice, int discountRate, String productImgSrc, List<TagDto> productTags) {
-        this.name = name;
-        this.productCategory = productCategory;
-        this.originalPrice = originalPrice;
-        this.discountPrice = originalPrice*(1-discountRate/100);
-        this.discountRate = discountRate;
-        this.productImgSrc = productImgSrc;
-        this.productTags = productTags;
+    public static ProductDto of(String name, ProductCategory productCategory, int originalPrice, int discountRate, String productImgSrc){
+        int discountPrice = originalPrice * (1-discountRate/100);
+        ProductDto productDto = new ProductDto(name, productCategory, originalPrice, discountPrice, discountRate, productImgSrc);
+        return productDto;
     }
 }
