@@ -18,6 +18,8 @@ public enum Error {
      * 404 NOT FOUND
      */
     NOT_FOUND_Products_EXCEPTION(HttpStatus.NOT_FOUND, "해당 상품이 존재하지 않습니다"),
+    NOT_FOUND_USER_EXCEPTION(HttpStatus.NOT_FOUND, "존재하지 않는 유저입니다"),
+    NOT_FOUND_BRAND_EXCEPTION(HttpStatus.NOT_FOUND, "존재하지 않는 브랜드입니다"),
 
 
     /**
