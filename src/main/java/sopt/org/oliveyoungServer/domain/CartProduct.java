@@ -44,8 +44,11 @@ public class CartProduct {
 
     // 장바구니 담을 상품 수량 증가
     public void addCount(int count){
-        this.count += count;
+        this.count += 1;
     }
+
+    // 장바구니 담을 상품 수량 감소
+    public void subCount(int count) {this.count-= 1;}
 
 
 
