@@ -15,7 +15,7 @@ GOSOPT 합동세미나 웹 2조 서버
 
 
 ## 🛠️ ERD
-<img src="https://github.com/GOSOPT-CDS-TEAM2/backend/assets/87180069/39f15932-bafd-488c-b618-ef6cce89921b" />
+<img src="https://github.com/GOSOPT-CDS-TEAM2/backend/assets/87180069/eb051ba0-c286-4dba-85ab-da38a6b3c467" />
 
 
 
