@@ -6,12 +6,10 @@ import sopt.org.oliveyoungServer.controller.dto.CartDto;
 import sopt.org.oliveyoungServer.controller.dto.CartProductDto;
 import sopt.org.oliveyoungServer.domain.Cart;
 import sopt.org.oliveyoungServer.domain.CartProduct;
-import sopt.org.oliveyoungServer.domain.Product;
 import sopt.org.oliveyoungServer.infrastructure.CartProductRepository;
 import sopt.org.oliveyoungServer.infrastructure.CartRepository;
 
-
-
+import javax.transaction.Transactional;
 
 
 @Service
@@ -22,15 +20,29 @@ public class CartService {
 
     public CartDto getCart(Long userId){
         Cart cart = cartRepository.findByUserId(userId).orElseThrow();
-        System.out.println(cart.getId());
         List<CartProductDto> cartProducts = cartProductRepository.findCartProductDtos(cart.getId());
-        CartDto cartDto = CartDto.builder()
+
+        return CartDto.builder()
                 .cartId(cart.getId())
                 .userId(userId)
                 .cartProductDtoList(cartProducts)
                 .build();
-        System.out.println(cartDto.getCartId());
+    }
 
-        return cartDto;
+    public Optional<CartProduct> getCartProduct(Long cartProductId){
+        Optional<CartProduct> cartProduct = cartProductRepository.findById(cartProductId);
+        return cartProduct;
+    }
+
+    @Transactional
+    public void updateCartProductCount(Long cartProductId, Boolean changeStatus){
+        CartProduct cartProduct = cartProductRepository.findById(cartProductId).orElseThrow();
+        System.out.println(changeStatus);
+        if(changeStatus){
+            cartProduct.addCount();
+        }
+        else{
+            cartProduct.subCount();
+        }
     }
 }

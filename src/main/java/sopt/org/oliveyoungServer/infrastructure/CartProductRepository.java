@@ -5,15 +5,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import sopt.org.oliveyoungServer.controller.dto.CartProductDto;
 import sopt.org.oliveyoungServer.domain.CartProduct;
-import sopt.org.oliveyoungServer.domain.Product;
 
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CartProductRepository extends JpaRepository<CartProduct,Long> {
 
-    // 카트 아이디와 아이템 아이디를 이용하여 카트 아이템 레포지토리의 엔티티 조회
-    List<CartProduct> findAllByCartIdAndProductId(Long cartId, Long productId);
+    // cartProductId로 cartProduct를 가져온다
+    Optional<CartProduct> findById(Long Id);
+
 
     // 장바구니 페이지에 전달할 CartProductDto를 쿼리로 조회해서 CartProductList에 담는다
     @Query("select new sopt.org.oliveyoungServer.controller.dto.CartProductDto(cp.id, p.name, p.originalPrice, p.discountRate, p.productImgSrc, cp.count) " +

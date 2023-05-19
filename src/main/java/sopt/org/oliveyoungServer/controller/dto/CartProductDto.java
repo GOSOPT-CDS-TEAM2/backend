@@ -2,8 +2,6 @@ package sopt.org.oliveyoungServer.controller.dto;
 
 import lombok.*;
 
-import java.math.BigDecimal;
-
 
 @Getter
 public class CartProductDto {
