@@ -3,8 +3,6 @@ package sopt.org.oliveyoungServer.controller.dto;
 import lombok.*;
 import sopt.org.oliveyoungServer.domain.ProductCategory;
 
-import java.util.List;
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

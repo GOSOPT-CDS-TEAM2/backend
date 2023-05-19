@@ -11,8 +11,6 @@ import sopt.org.oliveyoungServer.controller.dto.response.UpdateCartProductRespon
 import sopt.org.oliveyoungServer.domain.CartProduct;
 import sopt.org.oliveyoungServer.exception.Success;
 import sopt.org.oliveyoungServer.service.CartService;
-
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 
@@ -33,10 +31,9 @@ public class CartController {
     @PatchMapping("/change")
     @ResponseStatus(HttpStatus.OK)
     public ApiResponse<UpdateCartProductResponse> updateCartProductCount(@RequestBody @Valid UpdateCartProductReqeust request){
-        System.out.println("들어오나요?");
         cartService.updateCartProductCount(request.getCartProductId(), request.getChagneStatus());
         CartProduct cartProduct = cartService.getCartProduct(request.getCartProductId()).orElse(null);
-        UpdateCartProductResponse updateResponse = UpdateCartProductResponse.of(request.getCartProductId(), cartProduct.getCount());
-        return ApiResponse.success(Success.GETUSERCART_SUCCESS, updateResponse);
+        UpdateCartProductResponse updateResponse = UpdateCartProductResponse.of((long)request.getCartProductId(), cartProduct.getCount());
+        return ApiResponse.success(Success.MODIFYCARTLINEAMOUNT_SUCCESS, updateResponse);
     }
 }
