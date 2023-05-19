@@ -91,3 +91,35 @@ ex) [FEAT]#32 - getDetailViewAPI구현
 - CI:        CI 구성 파일 및 스크립트 변경
 - MERGE:     다른브랜치를 merge하는 경우
 - INIT :     Initial commit을 하는 경우
+  
+## 🧶 Coder Convention
+<details>
+<summary>Naming</summary>
+<div>
+
+1. 변수는 CamelCase를 기본으로 한다. <br>
+2. URL, 파일명 등은 kebab-case를 사용한다. <br>
+3. 패키지명은 단어가 달라지더라도 무조건 소문자를 사용한다. <br>
+4. ENUM이나 상수는 대문자로 네이밍한다. <br>
+5. 함수명은 소문자로 시작하고 동사로 네이밍한다. <br>
+6. 클래스명은 명사로 작성하고 UpperCamelCase를 사용한다. <br>
+7. 객체 이름을 함수 이름에 중복해서 넣지 않는다. (= 상위 이름을 하위 이름에 중복시키지 않는다.) <br>
+8. 컬렉션은 복수형을 사용하거나 컬렉션을 명시해준다. <br>
+9. 이중적인 의미를 가지는 단어는 지양한다. <br>
+10. 의도가 드러난다면 되도록 짧은 이름을 선택한다. <br>
+
+</div>
+</details>
+  
+<details>
+<summary>Structure</summary>
+<div>
+1. 패키지는 목적별로 묶는다. <br>
+2. Controller에서는 최대한 어떤 Service를 호출할지 결정하는 역할과 Exception처리만을 담당하자. <br>
+3. 하나의 클래스 안에서는 같은 목적을 둔 코드들의 집합이여야한다. <br>
+4. 메소드와 클래스는 최대한 작게 만든다. <br>
+5. 도메인 서비스를 만들어지는 것을 피하자. <br>
+
+</div>
+</details>
+
