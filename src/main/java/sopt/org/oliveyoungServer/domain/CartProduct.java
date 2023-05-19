@@ -43,12 +43,19 @@ public class CartProduct {
     }
 
     // 장바구니 담을 상품 수량 증가
-    public void addCount(int count){
+    public void addCount(){
         this.count += 1;
     }
 
     // 장바구니 담을 상품 수량 감소
-    public void subCount(int count) {this.count-= 1;}
+    public void subCount() {
+        if(this.count>1) {
+            this.count -= 1;
+        }
+        else{
+            this.count = 1;
+        }
+    }
 
 
 
