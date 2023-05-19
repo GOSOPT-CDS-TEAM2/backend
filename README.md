@@ -1,6 +1,23 @@
 # backend
 GOSOPT 합동세미나 웹 2조 서버
 
+## 👩‍👧‍👧 Our Team
+
+|                **🍀 [박수린](https://github.com/RinRinPARK)**                 |                **🍀 [김성은](https://github.com/sung-silver)**                 |
+  |:-----------------------------------:|:-----------------------------------:|
+| <img src="https://avatars.githubusercontent.com/u/87180069?v=4" width="300" height="300" /> |<img src ="https://avatars.githubusercontent.com/u/81363864?v=4" width="300" height="300" /> |
+|                                 Server Developer                                  |                               Server Developer                              |
+|        프로젝트 세팅<br /> Brand API, Main API<br />       |       회의록 작성<br /> Cart API, Main API<br />         |
+
+## 🔨 Project Structure
+
+
+
+
+## 🛠️ ERD
+<img src="https://github.com/GOSOPT-CDS-TEAM2/backend/assets/87180069/39f15932-bafd-488c-b618-ef6cce89921b" />
+
+
 
 ## 🌳 Branch
 
@@ -20,7 +37,7 @@ GOSOPT 합동세미나 웹 2조 서버
   - comment 전 merge 불가!
   - review반영 후, 본인이 merge.
 
-### branch 구조
+### 🌳 branch 구조
 
 ```jsx
 - main
