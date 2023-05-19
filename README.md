@@ -10,7 +10,30 @@ GOSOPT 합동세미나 웹 2조 서버
 |        프로젝트 세팅<br /> Brand API, Main API<br />       |       회의록 작성<br /> Cart API, Main API<br />         |
 
 ## 🔨 Project Structure
+```
+├─📁 main
+│  ├─📁 java
+│  │  └─📁 sopt
+│  │      └─📁 org
+│  │          └─📁 oliveyoungServer
+│  │              ├─📁 common
+│  │              │  ├─📁 advice
+│  │              │  └─📁 dto
+│  │              ├─📁 controller
+│  │              │  └─📁 dto
+│  │              │      ├─📁 request
+│  │              │      └─📁 response
+│  │              ├─📁 domain
+│  │              ├─📁 exception
+│  │              │  └─📁 model
+│  │              ├─📁 infrastructure
+│  │              └─📁 service
+│  └─📁 resources
+│      ├─static
+│      └─templates
+└─📁 test
 
+```
 
 
 
