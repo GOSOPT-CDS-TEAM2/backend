@@ -92,7 +92,7 @@ ex) [FEAT]#32 - getDetailViewAPI구현
 - MERGE:     다른브랜치를 merge하는 경우
 - INIT :     Initial commit을 하는 경우
   
-## 🧶 Coder Convention
+## 🧶 Code Convention
 <details>
 <summary>Naming</summary>
 <div>
