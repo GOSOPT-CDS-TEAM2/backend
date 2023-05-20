@@ -6,5 +6,6 @@ import sopt.org.oliveyoungServer.domain.ProductCategory;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository <Product, Long>{
+    List<Product> findAll();
     List<Product> findByProductCategory(ProductCategory productCategory);
 }

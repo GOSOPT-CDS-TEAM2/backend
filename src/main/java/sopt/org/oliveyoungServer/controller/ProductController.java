@@ -8,6 +8,7 @@ import sopt.org.oliveyoungServer.common.dto.ApiResponse;
 import sopt.org.oliveyoungServer.controller.dto.request.CategoryRankingRequestDto;
 import sopt.org.oliveyoungServer.controller.dto.response.BrandResponseDto;
 import sopt.org.oliveyoungServer.controller.dto.response.CategoryRankingResponseDto;
+import sopt.org.oliveyoungServer.controller.dto.response.RecommendResponseDto;
 import sopt.org.oliveyoungServer.domain.Brand;
 import sopt.org.oliveyoungServer.domain.BrandLike;
 import sopt.org.oliveyoungServer.service.BrandService;
@@ -22,6 +23,13 @@ import java.util.List;
 @RequestMapping("/api/main")
 public class ProductController {
     private final ProductService productService;
+
+    @GetMapping("/recommend")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse<List<RecommendResponseDto>> getRecommendProduct(@RequestHeader Long userId){
+        List<RecommendResponseDto> response = productService.getRecommendProduct(userId);
+        return ApiResponse.success(Success.GETRECOMMEND_SUCESS, response);
+    }
 
     @GetMapping("/ranking")
     @ResponseStatus(HttpStatus.OK)
