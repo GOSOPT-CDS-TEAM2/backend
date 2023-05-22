@@ -25,7 +25,7 @@ public class BrandService {
             List<BrandLike> likes = brandLikeRepository.findByUserId(userId);
             Boolean likeTF = false;
             for (BrandLike like: likes) {
-                if (like.getUser().getId() == brandId) {
+                if (like.getBrand().getId() == brandId) {
                     BrandResponseDto brandResponseDto = new BrandResponseDto(brandId, brand.getName(), brand.getImage(), brand.getLogoImage(), true);
                     result.add(brandResponseDto);
                     likeTF = true;
