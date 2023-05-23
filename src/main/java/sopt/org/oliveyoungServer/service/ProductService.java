@@ -48,19 +48,19 @@ public class ProductService {
     public List<CategoryRankingResponseDto> getCategoryRanking(Long userId,String category) {
         List<CategoryRankingResponseDto> result = new ArrayList<CategoryRankingResponseDto>();
         ProductCategory reqCategory = ETC;
-        if (category.equals("향수/디퓨저")) {
+        if (category.equals("perfumeanddefuser")) {
             reqCategory = PERFUMEANDDEFUSER;
-        } else if (category.equals("바디케어")) {
+        } else if (category.equals("bodycare")) {
             reqCategory = BODYCARE;
-        } else if (category.equals("헤어케어")) {
+        } else if (category.equals("haircare")) {
             reqCategory = HAIRCARE;
-        } else if (category.equals("미용소품")) {
+        } else if (category.equals("beautytool")) {
             reqCategory = BEAUTYTOOL;
-        } else if (category.equals("남성")) {
+        } else if (category.equals("man")) {
             reqCategory = MAN;
-        } else if (category.equals("식품")) {
+        } else if (category.equals("food")) {
             reqCategory = FOOD;
-        } else if (category.equals("반려동물")) {
+        } else if (category.equals("pet")) {
             reqCategory = PET;
         } else {
             reqCategory = ETC;

@@ -33,8 +33,7 @@ public class ProductController {
 
     @GetMapping("/ranking")
     @ResponseStatus(HttpStatus.OK)
-    public ApiResponse<List<CategoryRankingResponseDto>> getCategoryRanking(@RequestHeader Long userId, @RequestBody @Valid final CategoryRankingRequestDto request) {
-        String category = request.getCategory();
+    public ApiResponse<List<CategoryRankingResponseDto>> getCategoryRanking(@RequestHeader Long userId, @RequestHeader String category) {
         return ApiResponse.success(Success.GETCATEGORYRANKING_SUCCESS, productService.getCategoryRanking(userId, category));
     }
 }
