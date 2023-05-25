@@ -31,7 +31,7 @@ public class CartController {
     @PatchMapping("/change")
     @ResponseStatus(HttpStatus.OK)
     public ApiResponse<UpdateCartProductResponse> updateCartProductCount(@RequestBody @Valid UpdateCartProductReqeust request){
-        cartService.updateCartProductCount(request.getCartProductId(), request.getChagneStatus());
+        cartService.updateCartProductCount(request.getCartProductId(), request.getChangeStatus());
         CartProduct cartProduct = cartService.getCartProduct(request.getCartProductId()).orElse(null);
         UpdateCartProductResponse updateResponse = UpdateCartProductResponse.of((long)request.getCartProductId(), cartProduct.getCount());
         return ApiResponse.success(Success.MODIFYCARTLINEAMOUNT_SUCCESS, updateResponse);
