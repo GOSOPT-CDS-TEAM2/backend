@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UpdateCartProductReqeust {
     private Long cartProductId;
-    private Boolean chagneStatus;
+    private Boolean changeStatus;
 }
